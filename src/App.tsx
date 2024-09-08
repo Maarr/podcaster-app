@@ -2,7 +2,7 @@ function App() {
 
   return (
     <>
-      <p>
+       <p className="text-blue-500">
         TODO
       </p>
     </>
