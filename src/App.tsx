@@ -1,8 +1,13 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import PodcastList from '@/ui/views/podcast-list/PodcastList'
+
 function App() {
   return (
-    <>
-      <p className="text-blue-500">TODO</p>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<PodcastList />} />
+      </Routes>
+    </Router>
   )
 }
 
