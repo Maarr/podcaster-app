@@ -1,10 +1,7 @@
 function App() {
-
   return (
     <>
-       <p className="text-blue-500">
-        TODO
-      </p>
+      <p className="text-blue-500">TODO</p>
     </>
   )
 }
