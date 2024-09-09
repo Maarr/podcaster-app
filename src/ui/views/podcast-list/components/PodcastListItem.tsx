@@ -1,12 +1,22 @@
 import { Podcast } from '@/domain/entities/podcast.entity'
+import { useNavigate } from 'react-router-dom'
 
 interface PodcastItemProps {
   podcast: Podcast
 }
 
 function PodcastItem({ podcast }: PodcastItemProps) {
+  const navigate = useNavigate()
+
+  const handleClick = () => {
+    navigate(`/podcast/${podcast.id}`)
+  }
+
   return (
-    <div className="relative bg-white rounded shadow-md">
+    <div
+      className="relative bg-white rounded shadow-md hover:cursor-pointer"
+      onClick={handleClick}
+    >
       <div className="relative">
         <img
           src={podcast.imageUrl}

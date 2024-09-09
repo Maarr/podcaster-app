@@ -32,7 +32,7 @@ function PodcastList() {
           className="px-3 py-2 rounded-md bg-white text-black border border-gray-300 box-shadow-md"
         />
       </div>
-      <div className="container mx-auto mt-8 p-4">
+      <div className="container mx-auto mt-8 py-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-16">
           {filteredPodcasts.map((podcast) => (
             <PodcastItem key={podcast.id} podcast={podcast} />
