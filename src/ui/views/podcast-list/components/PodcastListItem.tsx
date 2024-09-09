@@ -6,7 +6,7 @@ interface PodcastItemProps {
 
 function PodcastItem({ podcast }: PodcastItemProps) {
   return (
-    <div className="relative bg-white rounded shadow-md overflow-hidden">
+    <div className="relative bg-white rounded shadow-md">
       <div className="relative">
         <img
           src={podcast.imageUrl}
@@ -15,8 +15,10 @@ function PodcastItem({ podcast }: PodcastItemProps) {
         />
       </div>
       <div className="pt-16 p-4">
-        <h2 className="text-xl font-semibold mb-2">{podcast.title}</h2>
-        <p className="text-gray-600">{podcast.author}</p>
+        <h2 className="text-xl font-semibold mb-2 uppercase text-center">
+          {podcast.title}
+        </h2>
+        <p className="text-gray-600 text-center">Author: {podcast.author}</p>
       </div>
     </div>
   )
