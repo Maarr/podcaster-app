@@ -1,0 +1,26 @@
+import { ReactNode } from 'react'
+import { Link } from 'react-router-dom'
+
+interface LayoutProps {
+  children: ReactNode
+}
+
+function Layout({ children }: LayoutProps) {
+  return (
+    <div className="min-h-screen flex flex-col">
+      <header className="bg-white drop-shadow-md">
+        <div className="container mx-auto py-4 px-6">
+          <Link
+            to="/"
+            className="text-xl font-bold text-sky-600 hover:text-sky-500"
+          >
+            Podcaster
+          </Link>
+        </div>
+      </header>
+      <main className="flex-grow container mx-auto px-6 py-8">{children}</main>
+    </div>
+  )
+}
+
+export default Layout
