@@ -5,21 +5,42 @@ import { useEffect } from 'react'
 import PodcastCard from '@/ui/components/PodcastCard'
 import { Episode } from '@/domain/entities/episode.entity'
 import { formatDate, formatDuration } from '@/ui/utils/date.util'
+import { usePodcastDetail } from '@/ui/hooks/usePodcastDetail'
 
 function PodcastDetail() {
   const { podcastId } = useParams()
   const navigate = useNavigate()
 
-  const { podcastDetail: podcast, fetchPodcastDetail } = usePodcastStore()
+  const { podcastDetail: podcast, setPodcastDetail } = usePodcastStore()
+  const { fetchPodcastDetail, loading, error } = usePodcastDetail(
+    podcastId ?? ''
+  )
+
+  const loadPodcastDetail = async () => {
+    const podcast = await fetchPodcastDetail()
+    setPodcastDetail(podcast ?? null)
+  }
 
   useEffect(() => {
     if (podcastId) {
-      fetchPodcastDetail(podcastId)
+      loadPodcastDetail()
     }
   }, [podcastId])
 
-  if (!podcast) {
-    return <div>Loading...</div>
+  if (!podcast || loading) {
+    return (
+      <Layout>
+        <div>Loading...</div>
+      </Layout>
+    )
+  }
+
+  if (error) {
+    return (
+      <Layout>
+        <p>{error}</p>
+      </Layout>
+    )
   }
 
   const { episodes } = podcast
@@ -30,8 +51,8 @@ function PodcastDetail() {
 
   return (
     <Layout>
-      <div className="flex">
-        <aside className="p-4 mr-10">
+      <div className="flex flex-col lg:flex-row">
+        <aside className="p-4 lg:mr-10">
           <PodcastCard podcast={podcast} />
         </aside>
 

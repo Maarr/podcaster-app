@@ -61,6 +61,8 @@ export class ApiPodcastRepository implements PodcastRepository {
       episodes,
     }
 
+    saveToCache(`${this.PODCAST_CACHE_KEY}_${podcast.id}`, podcast)
+
     return podcast
   }
 
@@ -81,6 +83,8 @@ export class ApiPodcastRepository implements PodcastRepository {
       title: item.querySelector('title')?.textContent ?? '',
       publishDate: item.querySelector('pubDate')?.textContent ?? '',
       duration: item.querySelector('duration')?.textContent ?? '',
+      description: item.querySelector('description')?.textContent ?? '',
+      audioUrl: item.querySelector('enclosure')?.getAttribute('url') ?? '',
     }))
 
     return { description, episodes, imageUrl }

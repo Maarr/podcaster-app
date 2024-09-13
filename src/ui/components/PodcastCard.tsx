@@ -1,5 +1,6 @@
 import { Podcast } from '@/domain/entities/podcast.entity'
 import { useNavigate } from 'react-router-dom'
+import { hasHtml } from '@/ui/utils/hasHtml.util'
 
 interface PodcastCardProps {
   podcast: Podcast
@@ -15,8 +16,8 @@ function PodcastCard({ podcast }: PodcastCardProps) {
   }
 
   return (
-    <div className="max-w-sm mx-auto bg-white shadow-md">
-      <div className="flex justify-center mt-4 pa-6">
+    <div className="w-full lg:max-w-sm mx-auto bg-white shadow-md">
+      <div className="flex justify-center pa-6">
         <img
           src={imageUrl}
           alt={title}
@@ -37,7 +38,14 @@ function PodcastCard({ podcast }: PodcastCardProps) {
         </p>
         <div className="border-t border-gray-200 my-2"></div>
         <p className="text-md font-bold">Description:</p>
-        <p className="italic">{description}</p>
+        {hasHtml(description) ? (
+          <div
+            className="italic"
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
+        ) : (
+          <p className="italic">{description}</p>
+        )}
       </div>
     </div>
   )
