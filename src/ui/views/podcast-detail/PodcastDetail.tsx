@@ -1,6 +1,6 @@
 import Layout from '@/ui/layouts/Layout'
 import { useNavigate, useParams } from 'react-router-dom'
-import usePodcastStore from './store/usePodcastStore.store'
+import usePodcastStore from '../../store/usePodcastStore.store'
 import { useEffect } from 'react'
 import PodcastCard from '@/ui/components/PodcastCard'
 import { Episode } from '@/domain/entities/episode.entity'
@@ -27,7 +27,7 @@ function PodcastDetail() {
     }
   }, [podcastId])
 
-  if (!podcast || loading) {
+  if (loading) {
     return (
       <Layout>
         <div>Loading...</div>
@@ -35,10 +35,10 @@ function PodcastDetail() {
     )
   }
 
-  if (error) {
+  if (error || !podcast) {
     return (
       <Layout>
-        <p>{error}</p>
+        <p>{error ?? 'Podcast not found'}</p>
       </Layout>
     )
   }

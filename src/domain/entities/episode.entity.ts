@@ -3,4 +3,6 @@ export interface Episode {
   title: string
   publishDate: string
   duration: string
+  description: string
+  audioUrl: string
 }
