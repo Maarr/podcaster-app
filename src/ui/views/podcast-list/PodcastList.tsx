@@ -1,22 +1,47 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { usePodcastStore } from './store/usePodcastsStore.store'
 import PodcastItem from './components/PodcastListItem'
 import Layout from '@/ui/layouts/Layout'
+import { usePodcasts } from '@/ui/hooks/usePodcasts'
+import { Podcast } from '@/domain/entities/podcast.entity'
 
 function PodcastList() {
-  const { podcasts, fetchPodcasts, searchTerm, setSearchTerm } =
-    usePodcastStore()
+  const {
+    podcasts: storedPodcasts,
+    setPodcasts,
+    searchTerm,
+    setSearchTerm,
+  } = usePodcastStore()
+
+  const { fetchPodcasts, loading, error } = usePodcasts()
+
+  const [filteredPodcasts, setFilteredPodcasts] = useState<Podcast[]>([])
+
+  const laodPodcasts = async () => {
+    const podcasts = await fetchPodcasts()
+    setPodcasts(podcasts ?? [])
+  }
+
+  const getFilteredPodcasts = () => {
+    return storedPodcasts.filter(
+      (podcast) =>
+        podcast.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        podcast.author.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        podcast.description.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+  }
 
   useEffect(() => {
-    fetchPodcasts()
+    if (!storedPodcasts.length) laodPodcasts()
   }, [])
 
-  const filteredPodcasts = podcasts.filter(
-    (podcast) =>
-      podcast.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      podcast.author.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      podcast.description.toLowerCase().includes(searchTerm.toLowerCase())
-  )
+  useEffect(() => {
+    if (!searchTerm) {
+      setFilteredPodcasts(storedPodcasts)
+      return
+    }
+    setFilteredPodcasts(getFilteredPodcasts())
+  }, [storedPodcasts, searchTerm])
 
   return (
     <Layout>
@@ -32,13 +57,17 @@ function PodcastList() {
           className="px-3 py-2 rounded-md bg-white text-black border border-gray-300 box-shadow-md"
         />
       </div>
-      <div className="container mx-auto mt-8 py-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-16">
-          {filteredPodcasts.map((podcast) => (
-            <PodcastItem key={podcast.id} podcast={podcast} />
-          ))}
+      {loading && <p>Loading...</p>}
+      {!loading && error && <p>{error}</p>}
+      {!loading && filteredPodcasts.length > 0 && (
+        <div className="container mx-auto mt-8 py-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-16">
+            {filteredPodcasts.map((podcast) => (
+              <PodcastItem key={podcast.id} podcast={podcast} />
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </Layout>
   )
 }
