@@ -6,10 +6,12 @@ import PodcastCard from '@/ui/components/PodcastCard'
 import { Episode } from '@/domain/entities/episode.entity'
 import { formatDate, formatDuration } from '@/ui/utils/date.util'
 import { useFetchPodcastDetail } from '@/ui/hooks/useFetchPodcastDetail'
+import useGlobalStore from '@/ui/store/useGlobalStore.store'
 
 function PodcastDetail() {
   const { podcastId } = useParams()
   const navigate = useNavigate()
+  const { setTransitioning } = useGlobalStore()
 
   const { podcastDetail: podcast, setPodcastDetail } = usePodcastStore()
   const { fetchPodcastDetail, loading, error } = useFetchPodcastDetail(
@@ -19,6 +21,7 @@ function PodcastDetail() {
   const loadPodcastDetail = async () => {
     const podcast = await fetchPodcastDetail()
     setPodcastDetail(podcast ?? null)
+    setTransitioning(false)
   }
 
   useEffect(() => {
@@ -46,6 +49,7 @@ function PodcastDetail() {
   const { episodes } = podcast
 
   const handleClickEpisode = (episode: Episode) => {
+    setTransitioning(true)
     navigate(`/podcast/${podcast.id}/episode/${episode.id}`)
   }
 

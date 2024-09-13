@@ -6,9 +6,12 @@ import { Episode } from '@/domain/entities/episode.entity'
 import usePodcastStore from '../../store/usePodcastStore.store'
 import { hasHtml } from '@/ui/utils/hasHtml.util'
 import { useFetchPodcastDetail } from '@/ui/hooks/useFetchPodcastDetail'
+import useGlobalStore from '@/ui/store/useGlobalStore.store'
 
 function EpisodeDetail() {
   const { podcastId, episodeId } = useParams()
+  const { setTransitioning } = useGlobalStore()
+
   const { podcastDetail: podcast, setPodcastDetail } = usePodcastStore()
   const { fetchPodcastDetail, loading, error } = useFetchPodcastDetail(
     podcastId ?? ''
@@ -39,6 +42,7 @@ function EpisodeDetail() {
   const loadEpisodeDetail = async () => {
     const episode = await getEpisodeDetail()
     setEpisode(episode)
+    setTransitioning(false)
   }
 
   useEffect(() => {

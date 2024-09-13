@@ -1,4 +1,5 @@
 import { Podcast } from '@/domain/entities/podcast.entity'
+import useGlobalStore from '@/ui/store/useGlobalStore.store'
 import { useNavigate } from 'react-router-dom'
 
 interface PodcastItemProps {
@@ -6,9 +7,11 @@ interface PodcastItemProps {
 }
 
 function PodcastItem({ podcast }: PodcastItemProps) {
+  const { setTransitioning } = useGlobalStore()
   const navigate = useNavigate()
 
   const handleClick = () => {
+    setTransitioning(true)
     navigate(`/podcast/${podcast.id}`)
   }
 

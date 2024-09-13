@@ -4,8 +4,10 @@ import PodcastItem from './components/PodcastListItem'
 import Layout from '@/ui/layouts/Layout'
 import { useFetchPodcasts } from '@/ui/hooks/useFetchPodcasts'
 import { Podcast } from '@/domain/entities/podcast.entity'
+import useGlobalStore from '@/ui/store/useGlobalStore.store'
 
 function PodcastList() {
+  const { setTransitioning } = useGlobalStore()
   const {
     podcasts: storedPodcasts,
     setPodcasts,
@@ -32,15 +34,13 @@ function PodcastList() {
   }
 
   useEffect(() => {
+    setTransitioning(true)
     if (!storedPodcasts.length) loadPodcasts()
   }, [])
 
   useEffect(() => {
-    if (!searchTerm) {
-      setFilteredPodcasts(storedPodcasts)
-      return
-    }
-    setFilteredPodcasts(getFilteredPodcasts())
+    setFilteredPodcasts(!searchTerm ? storedPodcasts : getFilteredPodcasts())
+    setTransitioning(false)
   }, [storedPodcasts, searchTerm])
 
   return (
