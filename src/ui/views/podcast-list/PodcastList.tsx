@@ -17,7 +17,7 @@ function PodcastList() {
 
   const [filteredPodcasts, setFilteredPodcasts] = useState<Podcast[]>([])
 
-  const laodPodcasts = async () => {
+  const loadPodcasts = async () => {
     const podcasts = await fetchPodcasts()
     setPodcasts(podcasts ?? [])
   }
@@ -32,7 +32,7 @@ function PodcastList() {
   }
 
   useEffect(() => {
-    if (!storedPodcasts.length) laodPodcasts()
+    if (!storedPodcasts.length) loadPodcasts()
   }, [])
 
   useEffect(() => {
