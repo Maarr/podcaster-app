@@ -4,7 +4,7 @@ import { useState, useCallback } from 'react'
 
 const getPodcasts = new GetPodcasts(new ApiPodcastRepository())
 
-export function usePodcasts() {
+export function useFetchPodcasts() {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
 

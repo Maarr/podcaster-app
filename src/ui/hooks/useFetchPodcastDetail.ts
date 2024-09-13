@@ -4,7 +4,7 @@ import { useCallback, useState } from 'react'
 
 const getPodcastDetail = new GetPodcastDetail(new ApiPodcastRepository())
 
-export function usePodcastDetail(podcastId: string) {
+export function useFetchPodcastDetail(podcastId: string) {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { usePodcastStore } from './store/usePodcastsStore.store'
 import PodcastItem from './components/PodcastListItem'
 import Layout from '@/ui/layouts/Layout'
-import { usePodcasts } from '@/ui/hooks/usePodcasts'
+import { useFetchPodcasts } from '@/ui/hooks/useFetchPodcasts'
 import { Podcast } from '@/domain/entities/podcast.entity'
 
 function PodcastList() {
@@ -13,7 +13,7 @@ function PodcastList() {
     setSearchTerm,
   } = usePodcastStore()
 
-  const { fetchPodcasts, loading, error } = usePodcasts()
+  const { fetchPodcasts, loading, error } = useFetchPodcasts()
 
   const [filteredPodcasts, setFilteredPodcasts] = useState<Podcast[]>([])
 

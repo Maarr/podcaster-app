@@ -5,14 +5,14 @@ import { useEffect } from 'react'
 import PodcastCard from '@/ui/components/PodcastCard'
 import { Episode } from '@/domain/entities/episode.entity'
 import { formatDate, formatDuration } from '@/ui/utils/date.util'
-import { usePodcastDetail } from '@/ui/hooks/usePodcastDetail'
+import { useFetchPodcastDetail } from '@/ui/hooks/useFetchPodcastDetail'
 
 function PodcastDetail() {
   const { podcastId } = useParams()
   const navigate = useNavigate()
 
   const { podcastDetail: podcast, setPodcastDetail } = usePodcastStore()
-  const { fetchPodcastDetail, loading, error } = usePodcastDetail(
+  const { fetchPodcastDetail, loading, error } = useFetchPodcastDetail(
     podcastId ?? ''
   )
 
