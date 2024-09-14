@@ -8,9 +8,11 @@ interface PodcastState {
   setSearchTerm: (term: string) => void
 }
 
-export const usePodcastStore = create<PodcastState>((set) => ({
+export const usePodcastsStore = create<PodcastState>((set) => ({
   podcasts: [],
   setPodcasts: (podcasts) => set({ podcasts }),
   searchTerm: '',
   setSearchTerm: (term: string) => set({ searchTerm: term }),
 }))
+
+export default usePodcastsStore

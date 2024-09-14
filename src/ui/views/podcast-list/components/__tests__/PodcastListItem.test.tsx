@@ -15,7 +15,7 @@ const setTransitioningMock = jest.spyOn(
   'setTransitioning'
 )
 
-describe('PodcastItem', () => {
+describe('PodcastListItem', () => {
   const mockPodcast: Podcast = {
     id: '1',
     imageUrl: 'http://example.com/image.jpg',

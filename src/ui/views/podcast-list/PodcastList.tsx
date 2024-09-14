@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { usePodcastStore } from './store/usePodcastsStore.store'
+import { usePodcastsStore } from './store/usePodcastsStore.store'
 import PodcastItem from './components/PodcastListItem'
 import Layout from '@/ui/layouts/Layout'
 import { useFetchPodcasts } from '@/ui/hooks/useFetchPodcasts'
@@ -13,7 +13,7 @@ function PodcastList() {
     setPodcasts,
     searchTerm,
     setSearchTerm,
-  } = usePodcastStore()
+  } = usePodcastsStore()
 
   const { fetchPodcasts, loading, error } = useFetchPodcasts()
 
