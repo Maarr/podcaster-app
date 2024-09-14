@@ -28,14 +28,16 @@ function EpisodeDetail() {
 
     // Get from store
     if (podcast && podcast.id == podcastId) {
-      return getEpisodeById(podcast.episodes)
+      const { episodes = [] } = podcast
+      return getEpisodeById(episodes)
     }
 
     // Get from API
     const podcastData = await fetchPodcastDetail()
     if (podcastData) {
+      const { episodes = [] } = podcastData
       setPodcastDetail(podcastData)
-      return getEpisodeById(podcastData.episodes)
+      return getEpisodeById(episodes)
     }
   }
 

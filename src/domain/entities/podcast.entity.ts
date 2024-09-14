@@ -6,5 +6,5 @@ export interface Podcast {
   title: string
   author: string
   description: string
-  episodes: Episode[]
+  episodes?: Episode[]
 }
