@@ -10,4 +10,5 @@ module.exports = {
   },
   testMatch: ['**/__tests__/**/*.test.(ts|tsx|js|jsx)'],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  extensionsToTreatAsEsm: ['.tsx'],
 }
