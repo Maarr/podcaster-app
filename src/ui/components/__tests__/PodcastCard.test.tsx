@@ -41,7 +41,7 @@ describe('PodcastCard', () => {
     expect(screen.getByText(description)).toBeInTheDocument()
   })
 
-  test('navigates to podcast detail on click', () => {
+  test('navigates and sets transitioning on title click', () => {
     render(<PodcastCard podcast={mockPodcast} />)
 
     const titleElement = screen.getByText(mockPodcast.title)
@@ -51,7 +51,7 @@ describe('PodcastCard', () => {
     expect(mockUseNavigate).toHaveBeenCalledWith(`/podcast/${mockPodcast.id}`)
   })
 
-  test('navigates to podcast detail on image click', () => {
+  test('navigates and sets transitioning on image click', () => {
     render(<PodcastCard podcast={mockPodcast} />)
 
     const imageElement = screen.getByAltText(mockPodcast.title)
@@ -61,7 +61,7 @@ describe('PodcastCard', () => {
     expect(mockUseNavigate).toHaveBeenCalledWith(`/podcast/${mockPodcast.id}`)
   })
 
-  test('navigates to podcast detail on author click', () => {
+  test('navigates and sets transitioning on author click', () => {
     render(<PodcastCard podcast={mockPodcast} />)
 
     const authorElement = screen.getByText(`by ${mockPodcast.author}`)
