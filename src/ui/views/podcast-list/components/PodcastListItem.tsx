@@ -18,6 +18,7 @@ function PodcastItem({ podcast }: PodcastItemProps) {
   return (
     <div
       className="relative bg-white rounded shadow-md hover:cursor-pointer"
+      data-testid="podcast-list-item"
       onClick={handleClick}
     >
       <div className="relative">
