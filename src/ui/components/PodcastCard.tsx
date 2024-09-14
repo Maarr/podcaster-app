@@ -1,17 +1,20 @@
 import { Podcast } from '@/domain/entities/podcast.entity'
 import { useNavigate } from 'react-router-dom'
 import { hasHtml } from '@/ui/utils/hasHtml.util'
+import useGlobalStore from '@/ui/store/useGlobalStore.store'
 
 interface PodcastCardProps {
   podcast: Podcast
 }
 
 function PodcastCard({ podcast }: PodcastCardProps) {
+  const { setTransitioning } = useGlobalStore()
   const navigate = useNavigate()
 
   const { id, imageUrl, title, author, description } = podcast
 
   const handleClick = () => {
+    setTransitioning(true)
     navigate(`/podcast/${id}`)
   }
 

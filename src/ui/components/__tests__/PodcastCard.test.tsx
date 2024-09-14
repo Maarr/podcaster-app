@@ -1,12 +1,19 @@
 import { render, screen } from '@testing-library/react'
 import { Podcast } from '@/domain/entities/podcast.entity'
 import PodcastCard from '../PodcastCard'
+import useGlobalStore from '@/ui/store/useGlobalStore.store'
 
 const mockUseNavigate = jest.fn()
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useNavigate: () => mockUseNavigate,
 }))
+
+const initialState = useGlobalStore.getInitialState()
+const setTransitioningMock = jest.spyOn(
+  useGlobalStore.getState(),
+  'setTransitioning'
+)
 
 describe('PodcastCard', () => {
   const mockPodcast: Podcast = {
@@ -16,6 +23,11 @@ describe('PodcastCard', () => {
     author: 'John Doe',
     description: 'This is a sample description.',
   }
+
+  beforeEach(() => {
+    mockUseNavigate.mockClear()
+    useGlobalStore.setState(initialState)
+  })
 
   test('renders correctly', () => {
     render(<PodcastCard podcast={mockPodcast} />)
@@ -35,6 +47,7 @@ describe('PodcastCard', () => {
     const titleElement = screen.getByText(mockPodcast.title)
     titleElement.click()
 
+    expect(setTransitioningMock).toHaveBeenCalledWith(true)
     expect(mockUseNavigate).toHaveBeenCalledWith(`/podcast/${mockPodcast.id}`)
   })
 
@@ -44,6 +57,7 @@ describe('PodcastCard', () => {
     const imageElement = screen.getByAltText(mockPodcast.title)
     imageElement.click()
 
+    expect(setTransitioningMock).toHaveBeenCalledWith(true)
     expect(mockUseNavigate).toHaveBeenCalledWith(`/podcast/${mockPodcast.id}`)
   })
 
@@ -53,6 +67,7 @@ describe('PodcastCard', () => {
     const authorElement = screen.getByText(`by ${mockPodcast.author}`)
     authorElement.click()
 
+    expect(setTransitioningMock).toHaveBeenCalledWith(true)
     expect(mockUseNavigate).toHaveBeenCalledWith(`/podcast/${mockPodcast.id}`)
   })
 })
