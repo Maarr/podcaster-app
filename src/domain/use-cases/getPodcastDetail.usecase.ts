@@ -1,4 +1,4 @@
-import { PodcastRepository } from '@/infrastructure/repositories/podcast.repository'
+import { PodcastRepository } from '@/domain/repositories/podcast.repository'
 import { Podcast } from '../entities/podcast.entity'
 
 export class GetPodcastDetail {
