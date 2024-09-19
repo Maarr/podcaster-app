@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import PodcastCard from '@/ui/components/PodcastCard'
 import { Episode } from '@/domain/entities/episode.entity'
 import { formatDate, formatDuration } from '@/ui/utils/date.util'
-import { useFetchPodcastDetail } from '@/ui/hooks/useFetchPodcastDetail'
+import { useFetchPodcastDetail } from '@/infrastructure/hooks/useFetchPodcastDetail'
 import useGlobalStore from '@/store/useGlobalStore.store'
 
 function PodcastDetail() {

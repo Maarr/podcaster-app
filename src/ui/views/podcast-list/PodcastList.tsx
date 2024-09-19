@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { usePodcastsStore } from '@/store/usePodcastsStore.store'
 import PodcastItem from './components/PodcastListItem'
 import Layout from '@/ui/layouts/Layout'
-import { useFetchPodcasts } from '@/ui/hooks/useFetchPodcasts'
+import { useFetchPodcasts } from '@/infrastructure/hooks/useFetchPodcasts'
 import { Podcast } from '@/domain/entities/podcast.entity'
 import useGlobalStore from '@/store/useGlobalStore.store'
 

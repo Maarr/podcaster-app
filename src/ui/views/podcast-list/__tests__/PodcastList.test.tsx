@@ -1,7 +1,7 @@
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import PodcastList from '@/ui/views/podcast-list/PodcastList'
 import { MemoryRouter } from 'react-router-dom'
-import { useFetchPodcasts } from '@/ui/hooks/useFetchPodcasts'
+import { useFetchPodcasts } from '@/infrastructure/hooks/useFetchPodcasts'
 import useGlobalStore from '@/store/useGlobalStore.store'
 import usePodcastsStore from '@/store/usePodcastsStore.store'
 
