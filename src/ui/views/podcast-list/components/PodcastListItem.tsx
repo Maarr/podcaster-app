@@ -1,5 +1,5 @@
 import { Podcast } from '@/domain/entities/podcast.entity'
-import useGlobalStore from '@/ui/store/useGlobalStore.store'
+import useGlobalStore from '@/store/useGlobalStore.store'
 import { useNavigate } from 'react-router-dom'
 
 interface PodcastItemProps {

@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
-import useGlobalStore from '@/ui/store/useGlobalStore.store'
+import useGlobalStore from '@/store/useGlobalStore.store'
 import Spinner from '@/ui/components/Spinner'
 
 interface LayoutProps {

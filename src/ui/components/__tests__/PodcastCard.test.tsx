@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { Podcast } from '@/domain/entities/podcast.entity'
 import PodcastCard from '../PodcastCard'
-import useGlobalStore from '@/ui/store/useGlobalStore.store'
+import useGlobalStore from '@/store/useGlobalStore.store'
 
 const mockUseNavigate = jest.fn()
 jest.mock('react-router-dom', () => ({

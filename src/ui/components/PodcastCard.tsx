@@ -1,7 +1,7 @@
 import { Podcast } from '@/domain/entities/podcast.entity'
 import { useNavigate } from 'react-router-dom'
 import { hasHtml } from '@/ui/utils/hasHtml.util'
-import useGlobalStore from '@/ui/store/useGlobalStore.store'
+import useGlobalStore from '@/store/useGlobalStore.store'
 
 interface PodcastCardProps {
   podcast: Podcast

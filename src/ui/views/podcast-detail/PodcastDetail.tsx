@@ -1,12 +1,12 @@
 import Layout from '@/ui/layouts/Layout'
 import { useNavigate, useParams } from 'react-router-dom'
-import usePodcastStore from '../../store/usePodcastStore.store'
+import usePodcastStore from '../../../store/usePodcastStore.store'
 import { useEffect } from 'react'
 import PodcastCard from '@/ui/components/PodcastCard'
 import { Episode } from '@/domain/entities/episode.entity'
 import { formatDate, formatDuration } from '@/ui/utils/date.util'
 import { useFetchPodcastDetail } from '@/ui/hooks/useFetchPodcastDetail'
-import useGlobalStore from '@/ui/store/useGlobalStore.store'
+import useGlobalStore from '@/store/useGlobalStore.store'
 
 function PodcastDetail() {
   const { podcastId } = useParams()

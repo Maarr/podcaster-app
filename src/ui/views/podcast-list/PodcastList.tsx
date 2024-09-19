@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
-import { usePodcastsStore } from '@/ui/store/usePodcastsStore.store'
+import { usePodcastsStore } from '@/store/usePodcastsStore.store'
 import PodcastItem from './components/PodcastListItem'
 import Layout from '@/ui/layouts/Layout'
 import { useFetchPodcasts } from '@/ui/hooks/useFetchPodcasts'
 import { Podcast } from '@/domain/entities/podcast.entity'
-import useGlobalStore from '@/ui/store/useGlobalStore.store'
+import useGlobalStore from '@/store/useGlobalStore.store'
 
 function PodcastList() {
   const { setTransitioning } = useGlobalStore()

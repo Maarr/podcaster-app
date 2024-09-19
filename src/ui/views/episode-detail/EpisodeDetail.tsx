@@ -2,9 +2,9 @@ import Layout from '@/ui/layouts/Layout'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { Episode } from '@/domain/entities/episode.entity'
-import usePodcastStore from '../../store/usePodcastStore.store'
+import usePodcastStore from '../../../store/usePodcastStore.store'
 import { useFetchPodcastDetail } from '@/ui/hooks/useFetchPodcastDetail'
-import useGlobalStore from '@/ui/store/useGlobalStore.store'
+import useGlobalStore from '@/store/useGlobalStore.store'
 import EpisodeDetailUI from './components/EpisodeDetailUI'
 
 function EpisodeDetail() {
