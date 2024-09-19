@@ -1,5 +1,5 @@
 import { Podcast } from '@/domain/entities/podcast.entity'
-import { PodcastRepository } from './podcast.repository'
+import { PodcastRepository } from '@/domain/repositories/podcast.repository'
 import { ApiPodcastDto } from '../dtos/apiPodcast.dto'
 import { getFromCache, saveToCache } from '../cache/localStorageCache.util'
 import { ApiPodcastDetailDto } from '../dtos/apiPodcastDetail.dto'

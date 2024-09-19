@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { usePodcastsStore } from './store/usePodcastsStore.store'
+import { usePodcastsStore } from '@/ui/store/usePodcastsStore.store'
 import PodcastItem from './components/PodcastListItem'
 import Layout from '@/ui/layouts/Layout'
 import { useFetchPodcasts } from '@/ui/hooks/useFetchPodcasts'

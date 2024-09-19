@@ -1,8 +1,7 @@
-import { GetPodcasts } from '@/domain/use-cases/getPodcasts.usecase'
 import { ApiPodcastRepository } from '@/infrastructure/repositories/apiPodcast.repository'
 import { useState, useCallback } from 'react'
 
-const getPodcasts = new GetPodcasts(new ApiPodcastRepository())
+const podcastRepository = new ApiPodcastRepository()
 
 export function useFetchPodcasts() {
   const [loading, setLoading] = useState<boolean>(false)
@@ -12,7 +11,7 @@ export function useFetchPodcasts() {
     setLoading(true)
     setError(null)
     try {
-      const result = await getPodcasts.invoke()
+      const result = await podcastRepository.getPodcasts()
       return result
     } catch (err) {
       setError('Failed to fetch podcasts')

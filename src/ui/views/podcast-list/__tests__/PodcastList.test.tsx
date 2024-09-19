@@ -3,7 +3,7 @@ import PodcastList from '@/ui/views/podcast-list/PodcastList'
 import { MemoryRouter } from 'react-router-dom'
 import { useFetchPodcasts } from '@/ui/hooks/useFetchPodcasts'
 import useGlobalStore from '@/ui/store/useGlobalStore.store'
-import usePodcastsStore from '@/ui/views/podcast-list/store/usePodcastsStore.store'
+import usePodcastsStore from '@/ui/store/usePodcastsStore.store'
 
 jest.mock('@/ui/hooks/useFetchPodcasts', () => ({
   useFetchPodcasts: jest.fn(),
