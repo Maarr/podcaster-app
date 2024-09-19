@@ -5,7 +5,7 @@ import { useFetchPodcasts } from '@/infrastructure/hooks/useFetchPodcasts'
 import useGlobalStore from '@/store/useGlobalStore.store'
 import usePodcastsStore from '@/store/usePodcastsStore.store'
 
-jest.mock('@/ui/hooks/useFetchPodcasts', () => ({
+jest.mock('@/infrastructure/hooks/useFetchPodcasts', () => ({
   useFetchPodcasts: jest.fn(),
 }))
 

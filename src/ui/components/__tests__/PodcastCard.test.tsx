@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { act, render, screen } from '@testing-library/react'
 import { Podcast } from '@/domain/entities/podcast.entity'
 import PodcastCard from '../PodcastCard'
 import useGlobalStore from '@/store/useGlobalStore.store'
@@ -29,8 +29,10 @@ describe('PodcastCard', () => {
     useGlobalStore.setState(initialState)
   })
 
-  test('renders correctly', () => {
-    render(<PodcastCard podcast={mockPodcast} />)
+  test('renders correctly', async () => {
+    await act(async () => {
+      render(<PodcastCard podcast={mockPodcast} />)
+    })
 
     const { title, author, description } = mockPodcast
 
@@ -41,8 +43,10 @@ describe('PodcastCard', () => {
     expect(screen.getByText(description)).toBeInTheDocument()
   })
 
-  test('navigates and sets transitioning on title click', () => {
-    render(<PodcastCard podcast={mockPodcast} />)
+  test('navigates and sets transitioning on title click', async () => {
+    await act(async () => {
+      render(<PodcastCard podcast={mockPodcast} />)
+    })
 
     const titleElement = screen.getByText(mockPodcast.title)
     titleElement.click()
@@ -51,8 +55,10 @@ describe('PodcastCard', () => {
     expect(mockUseNavigate).toHaveBeenCalledWith(`/podcast/${mockPodcast.id}`)
   })
 
-  test('navigates and sets transitioning on image click', () => {
-    render(<PodcastCard podcast={mockPodcast} />)
+  test('navigates and sets transitioning on image click', async () => {
+    await act(async () => {
+      render(<PodcastCard podcast={mockPodcast} />)
+    })
 
     const imageElement = screen.getByAltText(mockPodcast.title)
     imageElement.click()
@@ -61,8 +67,10 @@ describe('PodcastCard', () => {
     expect(mockUseNavigate).toHaveBeenCalledWith(`/podcast/${mockPodcast.id}`)
   })
 
-  test('navigates and sets transitioning on author click', () => {
-    render(<PodcastCard podcast={mockPodcast} />)
+  test('navigates and sets transitioning on author click', async () => {
+    await act(async () => {
+      render(<PodcastCard podcast={mockPodcast} />)
+    })
 
     const authorElement = screen.getByText(`by ${mockPodcast.author}`)
     authorElement.click()
